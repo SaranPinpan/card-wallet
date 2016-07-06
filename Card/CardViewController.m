@@ -38,6 +38,9 @@ static NSString *const defaultPIN = @"123456";
     UINavigationBar *bar = [self.navigationController navigationBar];
     bar.topItem.title = @"MY CARD";
     
+    UIBarButtonItem *logout = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logoutPressed)];
+    self.navigationItem.rightBarButtonItem = logout;
+    
     [self initTableView];
     
     UIView *blank = [[UIView alloc] initWithFrame:CGRectZero];
@@ -45,6 +48,10 @@ static NSString *const defaultPIN = @"123456";
     
     [self.cardTableView setShowsVerticalScrollIndicator:NO];
     
+}
+
+- (void)logoutPressed {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)initTableView {
@@ -92,14 +99,14 @@ static NSString *const defaultPIN = @"123456";
     if (indexPath.row == 1) {
         cell.amount.text = @"฿800.00";
         cell.date.text = @"05/17";
-        cell.cardID.text = @"**** **** **** 5678";
+        cell.cardID.text = @"4234 53xx xxxx 5678";
         cell.cardImage.image = [UIImage imageNamed:@"Card2"];
     }
     
     if (indexPath.row == 2) {
         cell.amount.text = @"฿11,800.00";
         cell.date.text = @"02/18";
-        cell.cardID.text = @"**** **** **** 2234";
+        cell.cardID.text = @"7436 48xx xxxx 2234";
         cell.cardImage.image = [UIImage imageNamed:@"Card3"];
     }
     
@@ -140,15 +147,24 @@ static NSString *const defaultPIN = @"123456";
         
         WebServiceHelper *helper = [WebServiceHelper sharedService];
         
-        NSDictionary *parameterDic = [[NSDictionary alloc] initWithObjectsAndKeys:helper.token, pToken, helper.login, pMobilenumber, helper.amount, pAmount, [NSNumber numberWithBool:YES], pIsConfirm, helper.transactionID, pTransID, nil];
+        NSDictionary *parameterDic = [[NSDictionary alloc] initWithObjectsAndKeys:helper.token, pToken, helper.login, pMobilenumber, helper.amount, pAmount, @"true", pIsConfirm, helper.transactionID, pTransID, nil];
         
         [helper sendCompleteTransactionWithParams:parameterDic response:^(NSData *data) {
             NSDictionary *userInfo = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
             NSLog(@"%@", userInfo);
             
             if ([userInfo objectForKey:pAmount]) {
-                [WebServiceHelper sharedService].amount = [userInfo objectForKey:pAmount];
-                [self updateCardValueWithAmount:[WebServiceHelper sharedService].amount date:[userInfo objectForKey:pExpireDate] cardID:[userInfo objectForKey:pCardNo]];
+                NSString *amounts = [NSString stringWithFormat:@"฿%.2f", [[userInfo objectForKey:pAmount] doubleValue]];
+                NSMutableString *amountString = [[NSMutableString alloc] initWithString:amounts];
+                if ([amountString length] > 6) {
+                    [amountString insertString:@"," atIndex:[amountString length]-6];
+                } if ([amountString length] > 10) {
+                    [amountString insertString:@"," atIndex:[amountString length]-10];
+                } if ([amountString length] > 14) {
+                    [amountString insertString:@"," atIndex:[amountString length]-14];
+                }
+                
+                [self updateCardValueWithAmount:amountString date:[userInfo objectForKey:pExpireDate] cardID:[userInfo objectForKey:@"card_no"]];
             }
         }];
     } else {
@@ -157,7 +173,7 @@ static NSString *const defaultPIN = @"123456";
             [self.navigationController popToRootViewControllerAnimated:YES];
             WebServiceHelper *helper = [WebServiceHelper sharedService];
             
-            NSDictionary *parameterDic = [[NSDictionary alloc] initWithObjectsAndKeys:helper.token, pToken, helper.login, pMobilenumber, helper.amount, pAmount, [NSNumber numberWithBool:NO], pIsConfirm, helper.transactionID, pTransID, nil];
+            NSDictionary *parameterDic = [[NSDictionary alloc] initWithObjectsAndKeys:helper.token, pToken, helper.login, pMobilenumber, helper.amount, pAmount, @"false", pIsConfirm, helper.transactionID, pTransID, nil];
             
             [helper sendCompleteTransactionWithParams:parameterDic response:^(NSData *data) {}];
         }

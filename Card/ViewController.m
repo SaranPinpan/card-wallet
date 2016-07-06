@@ -14,7 +14,6 @@
 @interface ViewController () 
 
 @property (strong, nonatomic) IBOutlet UIView *loginView;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @end
 
@@ -35,16 +34,7 @@
     self.loginView.layer.cornerRadius = 5;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callCard) name:@"test" object:nil];
-}
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self dismissIndicator];
-}
-
-- (void)dismissIndicator {
-    [self.loginBtn setTitle:@"LOGIN" forState:UIControlStateNormal];
-    [self.activity stopAnimating];
 }
 
 - (void)callCard {
@@ -57,8 +47,6 @@
 
 - (IBAction)loginBtnPressed:(id)sender {
     if ((self.emailField.text.length > 0) && (self.passwordField.text.length > 0)) {
-        [self.loginBtn setTitle:@"" forState:UIControlStateNormal];
-        [self.activity startAnimating];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"notify" object:self];
     }
 }

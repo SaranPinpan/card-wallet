@@ -46,10 +46,10 @@
         NSDictionary *data = [userInfo objectForKey:pAps];
         NSString *cardData = [data objectForKey:pAlert];
         NSString *transationID = [userInfo objectForKey:pTransID];
-        NSString *amount = [userInfo objectForKey:pAmount];
+        NSString *amountLong = [userInfo objectForKey:pAmount];
         
         [WebServiceHelper sharedService].transactionID = transationID;
-        [WebServiceHelper sharedService].amount = amount;
+        [WebServiceHelper sharedService].amount = amountLong;
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:cardData preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *confirm = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -71,7 +71,7 @@
 }
 
 - (void)registerForPushNotification:(UIApplication*)application {
-    UIUserNotificationSettings *userNoti = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
+    UIUserNotificationSettings *userNoti = [UIUserNotificationSettings settingsForTypes: UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
     [application registerUserNotificationSettings:userNoti];
 }
 
@@ -108,20 +108,35 @@
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[dict objectForKey:@"error"] preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okBtn = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [alert dismissViewControllerAnimated:YES completion:nil];
-                    [vc dismissIndicator];
                 }];
                 
                 [alert addAction:okBtn];
                 [vc presentViewController:alert animated:YES completion:nil];
             } else {
-                [vc dismissIndicator];
                 NSArray *cardDatas = [dict objectForKey:pCards];
                 
                 if (cardDatas.count > 0) {
                     NSDictionary *cardData = [cardDatas objectAtIndex:0];
-                    NSString *cardNo = [cardData objectForKey:pCardNo];
+                    
+//                    NSString *cardNo = [cardData objectForKey:pCardNo];
+                    NSString *card = [cardData objectForKey:pCardNo];
+                    NSMutableString *cardNo = [[NSMutableString alloc] initWithString:card];
+                    [cardNo insertString:@" " atIndex:[card length]-4];
+                    [cardNo insertString:@" " atIndex:[card length]-8];
+                    [cardNo insertString:@" " atIndex:[card length]-12];
+                    
                     NSString *expireDate = [cardData objectForKey:pExpireDate];
-                    NSString *amount = [NSString stringWithFormat:@"%ld",[[cardData objectForKey:pAmount] longValue]];
+                    
+                    NSString *amountLong = [NSString stringWithFormat:@"%.2f",[[cardData objectForKey:pAmount] doubleValue]];
+//                    NSString *amount = [@"฿" stringByAppendingString:amountLong];
+                    NSMutableString *amount = [[NSMutableString alloc] initWithString:amountLong];
+                    if ([amount length] > 6) {
+                        [amount insertString:@"," atIndex:[amount length]-6];
+                    } if ([amount length] > 10) {
+                        [amount insertString:@"," atIndex:[amount length]-10];
+                    } if ([amount length] > 14) {
+                        [amount insertString:@"," atIndex:[amount length]-14];
+                    }
                     
                     cardVC = [[CardViewController alloc] initWithNibName:@"CardViewController" bundle:nil];
                     

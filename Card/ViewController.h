@@ -14,7 +14,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutlet UIButton *loginBtn;
 
-- (void)dismissIndicator;
 
 @end
 

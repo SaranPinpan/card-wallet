@@ -7,7 +7,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
-                <outlet property="activity" destination="ZEf-rf-rkF" id="vtQ-Hc-k1g"/>
                 <outlet property="emailField" destination="05F-MF-see" id="VB1-2b-4ZB"/>
                 <outlet property="loginBtn" destination="Epj-t2-xeF" id="Psc-I5-nix"/>
                 <outlet property="loginView" destination="Jt3-8T-t16" id="qyV-7C-skd"/>
@@ -48,6 +47,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jt3-8T-t16">
                     <rect key="frame" x="32" y="275" width="310" height="97"/>
                     <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="05F-MF-see">
+                            <rect key="frame" x="20" y="5" width="270" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="MAL-3j-k3X"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="5sm-Kq-wpM"/>
+                            </connections>
+                        </textField>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDs-P2-Nye">
                             <rect key="frame" x="20" y="56" width="270" height="40"/>
                             <constraints>
@@ -66,17 +76,6 @@
                                 <constraint firstAttribute="height" constant="1" id="tEx-Go-XsU"/>
                             </constraints>
                         </view>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="05F-MF-see">
-                            <rect key="frame" x="20" y="5" width="270" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="MAL-3j-k3X"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="next"/>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="5sm-Kq-wpM"/>
-                            </connections>
-                        </textField>
                     </subviews>
                     <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -101,13 +100,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ZEf-rf-rkF">
-                    <rect key="frame" x="177" y="414" width="20" height="20"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="20" id="1YK-l6-KIQ"/>
-                        <constraint firstAttribute="width" constant="20" id="Miy-Uw-T6z"/>
-                    </constraints>
-                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.94901960784313721" green="0.95686274509803926" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -119,14 +111,17 @@
                 <constraint firstItem="Jt3-8T-t16" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="32" id="AFq-XG-urg"/>
                 <constraint firstItem="Epj-t2-xeF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JDP-jt-7a1"/>
                 <constraint firstItem="Epj-t2-xeF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="67" id="Ug0-2u-tbY"/>
-                <constraint firstItem="ZEf-rf-rkF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="chp-yw-mXf"/>
                 <constraint firstItem="Jt3-8T-t16" firstAttribute="top" secondItem="7jR-GV-Gn6" secondAttribute="bottom" constant="22" id="dWd-tv-xdj"/>
-                <constraint firstItem="ZEf-rf-rkF" firstAttribute="top" secondItem="Jt3-8T-t16" secondAttribute="bottom" constant="42" id="ilw-gO-XlU"/>
                 <constraint firstItem="Epj-t2-xeF" firstAttribute="top" secondItem="Jt3-8T-t16" secondAttribute="bottom" constant="32" id="mzS-Lv-Uyp"/>
                 <constraint firstAttribute="trailing" secondItem="Epj-t2-xeF" secondAttribute="trailing" constant="68" id="sVK-Sr-VBh"/>
                 <constraint firstItem="7jR-GV-Gn6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="82" id="xsR-Cl-X6L"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="JDP-jt-7a1"/>
+                </mask>
+            </variation>
         </view>
     </objects>
     <resources>

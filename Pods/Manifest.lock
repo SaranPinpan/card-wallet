@@ -1,0 +1,32 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - IQKeyboardManager (4.0.2)
+  - THPinViewController (1.2.4)
+
+DEPENDENCIES:
+  - AFNetworking
+  - IQKeyboardManager
+  - THPinViewController
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  IQKeyboardManager: 2341089c4ae25fa2fa82ce356a259fcd267dc6b6
+  THPinViewController: 6ea25443b2205bdfaaf5a6db8b05403dfbe0bdec
+
+PODFILE CHECKSUM: 10b5eef7fcfcd91ab5f58faff24ac2d3fd739801
+
+COCOAPODS: 1.0.0

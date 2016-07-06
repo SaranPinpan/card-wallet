@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your payment has been successfully" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrN-gm-E2a">
-                    <rect key="frame" x="18" y="217" width="339" height="21"/>
+                    <rect key="frame" x="18" y="308" width="339" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="abp-zk-AMK"/>
                     </constraints>
@@ -43,7 +43,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij6-sU-1JN">
-                    <rect key="frame" x="90" y="169" width="195" height="40"/>
+                    <rect key="frame" x="90" y="260" width="195" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Oh7-cj-jmf"/>
                     </constraints>
@@ -51,15 +51,24 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="success" translatesAutoresizingMaskIntoConstraints="NO" id="Y1A-g1-Dsa">
+                    <rect key="frame" x="157" y="166" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="BgA-uu-tSs"/>
+                        <constraint firstAttribute="height" constant="60" id="PNA-Lm-JmF"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Ij6-sU-1JN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="169" id="Gcc-GA-eX1"/>
+                <constraint firstItem="Ij6-sU-1JN" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="260" id="Gcc-GA-eX1"/>
+                <constraint firstItem="Y1A-g1-Dsa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IU9-0F-x1x"/>
                 <constraint firstAttribute="trailing" secondItem="Ij6-sU-1JN" secondAttribute="trailing" constant="90" id="LQB-iD-wgc"/>
                 <constraint firstAttribute="trailing" secondItem="pMQ-Fs-Uen" secondAttribute="trailing" constant="68" id="Ndy-zv-K5d"/>
                 <constraint firstItem="Ij6-sU-1JN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="90" id="Poq-mh-foI"/>
                 <constraint firstAttribute="trailing" secondItem="wrN-gm-E2a" secondAttribute="trailing" constant="18" id="Rkp-Oc-IdR"/>
                 <constraint firstItem="wrN-gm-E2a" firstAttribute="top" secondItem="Ij6-sU-1JN" secondAttribute="bottom" constant="8" id="YVF-vc-Nem"/>
+                <constraint firstItem="Y1A-g1-Dsa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="166" id="aPt-DS-ot6"/>
                 <constraint firstItem="wrN-gm-E2a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="18" id="cKi-Ap-IpS"/>
                 <constraint firstAttribute="bottom" secondItem="pMQ-Fs-Uen" secondAttribute="bottom" constant="251" id="kpz-Bq-s3n"/>
                 <constraint firstItem="pMQ-Fs-Uen" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="67" id="wSF-tq-Wce"/>
@@ -67,4 +76,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
         </view>
     </objects>
+    <resources>
+        <image name="success" width="117" height="117"/>
+    </resources>
 </document>
